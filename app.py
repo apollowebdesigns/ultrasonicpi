@@ -9,7 +9,7 @@ GPIO_TRIGGER = 18
 GPIO_ECHO = 24
 
 GPIO_ARDUINO_TRIGGER = 10
-GPIO_ARDUINO_ECHO = 9
+GPIO_ARDUINO_ECHO = 2
 
 connection = SerialManager()
 a = ArduinoApi(connection=connection)
