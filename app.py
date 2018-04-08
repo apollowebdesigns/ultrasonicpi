@@ -33,7 +33,8 @@ def distanceWithArduino():
     print("arduino function starts")
     a.digitalWrite(GPIO_ARDUINO_TRIGGER, 1)
 
-    time.sleep(0.00001)
+    #time.sleep(0.00001)
+    time.sleep(0.01)
     a.digitalWrite(GPIO_ARDUINO_TRIGGER, 0)
 
     StartTime = time.time()
