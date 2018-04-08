@@ -4,6 +4,8 @@ import time
 from nanpy import (ArduinoApi, SerialManager)
 from time import sleep
 
+from multiprocessing.dummy import Pool as ThreadPool
+
 #set GPIO Pins
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
@@ -43,18 +45,18 @@ def distanceWithArduino():
     print("what is the state?")
     print(a.digitalRead(GPIO_ARDUINO_ECHO))
 
-    while a.digitalRead(GPIO_ARDUINO_ECHO) == 0:
-        print("start")
-        StartTime = time.time()
+    # while a.digitalRead(GPIO_ARDUINO_ECHO) == 0:
+    #     print("start")
+    #     StartTime = time.time()
 
     while a.digitalRead(GPIO_ARDUINO_ECHO) == 1:
         print("end")
         StopTime = time.time()
 
-    TimeElapsed = StopTime - StartTime
-    distance = (TimeElapsed * 34300) / 2
+    # TimeElapsed = StopTime - StartTime
+    # distance = (TimeElapsed * 34300) / 2
 
-    return distance
+    return 999
 
 def distance():
     # set Trigger to HIGH
