@@ -42,7 +42,7 @@ def distanceWithArduino():
     StartTime = time.time()
     StopTime = time.time()
 
-    print(a.analogueRead(2))
+    print(a.analogRead(2))
     print(a.digitalRead(2))
 
     print("what is the state?")
