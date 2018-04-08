@@ -30,29 +30,22 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 def distanceWithArduino():
-    print("inside the function")
-    # set Trigger to HIGH
+    print("arduino function starts")
     a.digitalWrite(GPIO_ARDUINO_TRIGGER, 1)
 
-    # set Trigger after 0.01ms to LOW
     time.sleep(0.00001)
     a.digitalWrite(GPIO_ARDUINO_TRIGGER, 0)
 
     StartTime = time.time()
     StopTime = time.time()
 
-    # save StartTime
     while a.digitalRead(GPIO_ARDUINO_ECHO) == 0:
         StartTime = time.time()
 
-    # save time of arrival
     while a.digitalRead(GPIO_ARDUINO_ECHO) == 1:
         StopTime = time.time()
 
-    # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
     distance = (TimeElapsed * 34300) / 2
 
     return distance
