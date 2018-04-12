@@ -47,37 +47,37 @@ def distance():
 
     return distance
 
-def distanceWithSecondPi():
-    # set Trigger to HIGH
-    pi_zero.write(GPIO_TRIGGER, 1)
-
-    # set Trigger after 0.01ms to LOW
-    time.sleep(0.00001)
-    pi_zero.write(GPIO_TRIGGER, 0)
-
-    StartTime = time.time()
-    StopTime = time.time()
-
-    # save StartTime
-    while pi_zero.read(GPIO_ECHO) == 0:
-        StartTime = time.time()
-
-    # save time of arrival
-    while pi_zero.read(GPIO_ECHO) == 1:
-        StopTime = time.time()
-
-    # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
-
-    return distance
+# def distanceWithSecondPi():
+#     # set Trigger to HIGH
+#     pi_zero.write(GPIO_TRIGGER, 1)
+#
+#     # set Trigger after 0.01ms to LOW
+#     time.sleep(0.00001)
+#     pi_zero.write(GPIO_TRIGGER, 0)
+#
+#     StartTime = time.time()
+#     StopTime = time.time()
+#
+#     # save StartTime
+#     while pi_zero.read(GPIO_ECHO) == 0:
+#         StartTime = time.time()
+#
+#     # save time of arrival
+#     while pi_zero.read(GPIO_ECHO) == 1:
+#         StopTime = time.time()
+#
+#     # time difference between start and arrival
+#     TimeElapsed = StopTime - StartTime
+#     # multiply with the sonic speed (34300 cm/s)
+#     # and divide by 2, because there and back
+#     distance = (TimeElapsed * 34300) / 2
+#
+#     return distance
 
 if __name__ == '__main__':
     try:
         while True:
-            dist = distanceWithSecondPi()
+            dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
             time.sleep(1)
 
