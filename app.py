@@ -52,21 +52,21 @@ def distance():
 
 def distanceWithSecondPi():
     # set Trigger to HIGH
-    pi_zero.write(GPIO_TRIGGER, 1)
+    pi_zero.write(GPIO_ZERO_TRIGGER, 1)
 
     # set Trigger after 0.01ms to LOW
     time.sleep(0.00001)
-    pi_zero.write(GPIO_TRIGGER, 0)
+    pi_zero.write(GPIO_ZERO_TRIGGER, 0)
 
     StartTime = time.time()
     StopTime = time.time()
 
     # save StartTime
-    while pi_zero.read(GPIO_ECHO) == 0:
+    while pi_zero.read(GPIO_ZERO_ECHO) == 0:
         StartTime = time.time()
 
     # save time of arrival
-    while pi_zero.read(GPIO_ECHO) == 1:
+    while pi_zero.read(GPIO_ZERO_ECHO) == 1:
         StopTime = time.time()
 
     # time difference between start and arrival
