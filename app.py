@@ -1,28 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 
-from nanpy import (ArduinoApi, SerialManager)
-from time import sleep
-
-from multiprocessing.dummy import Pool as ThreadPool
-
 #set GPIO Pins
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
-
-GPIO_ARDUINO_TRIGGER = 10
-GPIO_ARDUINO_ECHO = 2
-
-connection = SerialManager()
-a = ArduinoApi(connection=connection)
-
-a.pinMode(12, a.OUTPUT)
-a.pinMode(GPIO_ARDUINO_TRIGGER, a.OUTPUT)
-a.pinMode(GPIO_ARDUINO_ECHO, a.OUTPUT)
-
-a.digitalWrite(12, 1)
-sleep(0.2)
-a.digitalWrite(12, 0)
 
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
@@ -30,36 +11,6 @@ GPIO.setmode(GPIO.BCM)
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
-
-def distanceWithArduino():
-    print("arduino function starts")
-    a.digitalWrite(GPIO_ARDUINO_TRIGGER, 1)
-
-    #time.sleep(0.00001)
-    time.sleep(0.01)
-    a.digitalWrite(GPIO_ARDUINO_TRIGGER, 0)
-
-    StartTime = time.time()
-    StopTime = time.time()
-
-    print(a.analogRead(2))
-    print(a.digitalRead(2))
-
-    print("what is the state?")
-    print(a.digitalRead(GPIO_ARDUINO_ECHO))
-
-    # while a.digitalRead(GPIO_ARDUINO_ECHO) == 0:
-    #     print("start")
-    #     StartTime = time.time()
-
-    while a.digitalRead(2) == 1:
-        print("end")
-        StopTime = time.time()
-
-    # TimeElapsed = StopTime - StartTime
-    # distance = (TimeElapsed * 34300) / 2
-
-    return 999
 
 def distance():
     # set Trigger to HIGH
