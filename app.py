@@ -14,9 +14,11 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 #set modes on pi zero
+print('setting up gpio pins')
 pi_zero = pigpio.pi('192.168.1.67')
 pi_zero.set_mode(GPIO_TRIGGER, pigpio.OUTPUT)
 pi_zero.set_mode(GPIO_ECHO, pigpio.INPUT)
+print('pins have been set up')
 
 def distance():
     # set Trigger to HIGH
