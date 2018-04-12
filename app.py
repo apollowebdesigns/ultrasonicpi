@@ -42,12 +42,7 @@ def distance():
 if __name__ == '__main__':
     try:
         while True:
-            #dist = distance()
-            print("before arduino")
-            dist = distanceWithArduino()
-            #value = a.digitalRead(GPIO_ARDUINO_ECHO)
-            #print("what is the value")
-            #print(value)
+            dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
             time.sleep(1)
 
