@@ -50,41 +50,44 @@ def distance():
 
     return distance
 
-def distanceWithSecondPi():
-    # set Trigger to HIGH
-    pi_zero.write(GPIO_ZERO_TRIGGER, 1)
+import gevent
+import gevent.monkey
+from gevent.pywsgi import WSGIServer
+gevent.monkey.patch_all()
 
-    # set Trigger after 0.01ms to LOW
-    time.sleep(0.00001)
-    pi_zero.write(GPIO_ZERO_TRIGGER, 0)
+from flask import Flask, request, Response, render_template
 
-    StartTime = time.time()
-    StopTime = time.time()
+app = Flask(__name__)
 
-    # save StartTime
-    while pi_zero.read(GPIO_ZERO_ECHO) == 0:
-        StartTime = time.time()
+def event_stream():
+    count = 0
+    while True:
+        gevent.sleep(2)
+        yield 'data: %s\n\n' % count
+        count += 1
 
-    # save time of arrival
-    while pi_zero.read(GPIO_ZERO_ECHO) == 1:
-        StopTime = time.time()
+@app.route('/my_event_source')
+def sse_request():
+    return Response(
+        event_stream(),
+        mimetype='text/event-stream')
 
-    # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
-
-    return distance
+@app.route('/')
+def page():
+    return render_template('sse.html')
 
 if __name__ == '__main__':
-    try:
-        while True:
-            dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(1)
+    http_server = WSGIServer(('127.0.0.1', 8090), app)
+    http_server.serve_forever()
 
-            # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        print("Measurement stopped by User")
-        GPIO.cleanup()
+# if __name__ == '__main__':
+#     try:
+#         while True:
+#             dist = distance()
+#             print ("Measured Distance = %.1f cm" % dist)
+#             time.sleep(1)
+#
+#             # Reset by pressing CTRL + C
+#     except KeyboardInterrupt:
+#         print("Measurement stopped by User")
+#         GPIO.cleanup()
