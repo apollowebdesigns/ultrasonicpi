@@ -71,7 +71,7 @@ def page():
 
 if __name__ == '__main__':
     try:
-        http_server = WSGIServer(('127.0.0.0', 8090), app)
+        http_server = WSGIServer(('0.0.0.0', 80), app)
         http_server.serve_forever()
     except KeyboardInterrupt:
         print("Measurement stopped by User")
