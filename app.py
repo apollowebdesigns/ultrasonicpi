@@ -80,7 +80,7 @@ def distanceWithSecondPi():
 if __name__ == '__main__':
     try:
         while True:
-            dist = distanceWithSecondPi()
+            dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
             time.sleep(1)
 
