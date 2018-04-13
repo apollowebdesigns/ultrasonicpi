@@ -2,6 +2,13 @@ import RPi.GPIO as GPIO
 import pigpio
 import time
 
+import gevent
+import gevent.monkey
+from gevent.pywsgi import WSGIServer
+gevent.monkey.patch_all()
+
+from flask import Flask, request, Response, render_template
+
 #set GPIO Pins
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
@@ -15,13 +22,6 @@ GPIO.setmode(GPIO.BCM)
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
-
-#set modes on pi zero
-print('setting up gpio pins')
-pi_zero = pigpio.pi('192.168.1.67')
-pi_zero.set_mode(GPIO_TRIGGER, pigpio.OUTPUT)
-pi_zero.set_mode(GPIO_ECHO, pigpio.INPUT)
-print('pins have been set up')
 
 def distance():
     # set Trigger to HIGH
@@ -49,13 +49,6 @@ def distance():
     distance = (TimeElapsed * 34300) / 2
 
     return distance
-
-import gevent
-import gevent.monkey
-from gevent.pywsgi import WSGIServer
-gevent.monkey.patch_all()
-
-from flask import Flask, request, Response, render_template
 
 app = Flask(__name__)
 
