@@ -57,7 +57,8 @@ def event_stream():
     while True:
         gevent.sleep(2)
         yield 'data: %s\n\n' % count
-        count += 1
+        count = distance()
+        # count += 1
 
 @app.route('/my_event_source')
 def sse_request():
