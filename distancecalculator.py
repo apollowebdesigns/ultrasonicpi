@@ -27,13 +27,10 @@ def distance():
     StopTime = time.time()
 
     timeout = time.time() + 3
-    print('This is before the loop')
-    print(getCPUtemperature())
 
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
         if time.time() > timeout:
-            print('break')
             break
 
         StartTime = time.time()
