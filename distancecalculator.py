@@ -1,14 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 
-from subprocess import PIPE, Popen
-import psutil
-
-
-def get_cpu_temperature():
-    process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
-    output, _error = process.communicate()
-    return float(output[output.index('=') + 1:output.rindex("'")])
+def getCPUtemperature():
+    res = os.popen('vcgencmd measure_temp').readline()
+    return(res.replace("temp=","").replace("'C\n",""))
 
 #set GPIO Pins
 GPIO_TRIGGER = 18
@@ -37,7 +32,7 @@ def distance():
 
     timeout = time.time() + 3
     print('This is before the loop')
-    print(get_cpu_temperature())
+    print(getCPUtemperature())
 
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
