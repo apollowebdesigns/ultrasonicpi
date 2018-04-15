@@ -1,10 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import os
-
-def getCPUtemperature():
-    res = os.popen('vcgencmd measure_temp').readline()
-    return(res.replace("temp=","").replace("'C\n",""))
 
 #set GPIO Pins
 GPIO_TRIGGER = 18
