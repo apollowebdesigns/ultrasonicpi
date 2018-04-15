@@ -14,7 +14,7 @@ CORS(app)
 def event_stream():
     count = 0
     while True:
-        gevent.sleep(0.1)
+        gevent.sleep(0.5)
         yield 'data: %s\n\n' % count
         count = distance()
         # count += 1
