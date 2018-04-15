@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import os
 
 def getCPUtemperature():
     res = os.popen('vcgencmd measure_temp').readline()
