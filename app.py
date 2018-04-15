@@ -1,3 +1,4 @@
+import RPi.GPIO as GPIO
 import gevent
 import gevent.monkey
 from gevent.pywsgi import WSGIServer
