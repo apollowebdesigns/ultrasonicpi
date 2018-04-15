@@ -30,7 +30,6 @@ def distance():
 
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
-        time.sleep(0.1)
         if time.time() > timeout:
             break
 
@@ -38,7 +37,6 @@ def distance():
 
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
-        time.sleep(0.1)
         if time.time() > timeout:
             break
         StopTime = time.time()
