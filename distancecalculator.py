@@ -37,7 +37,6 @@ def distance():
 
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
-        print('before time start')
         if time.time() > timeout:
             print('break')
             break
