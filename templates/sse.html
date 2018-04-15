@@ -6,8 +6,8 @@
     <script type="text/javascript">
         $(document).ready(
             function() {
-                sse = new EventSource('/my_event_source');
-                sse.onmessage = function(message) {
+                sseUltrasonic = new EventSource('/my_event_source');
+                sseUltrasonic.onmessage = function(message) {
                     console.log('A message has arrived!');
 //                    $('#output').append('<li>'+message.data+'</li>');
                     document.getElementById('output').innerHTML = message.data;

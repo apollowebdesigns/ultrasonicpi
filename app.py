@@ -5,9 +5,11 @@ from gevent.pywsgi import WSGIServer
 gevent.monkey.patch_all()
 
 from flask import Flask, request, Response, render_template
+from flask_cors import CORS
 from distancecalculator import distance
 
 app = Flask(__name__)
+CORS(app)
 
 def event_stream():
     count = 0
