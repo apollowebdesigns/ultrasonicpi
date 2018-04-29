@@ -26,7 +26,7 @@ def distance():
     StartTime = time.time()
     StopTime = time.time()
 
-    timeout = time.time() + 10
+    timeout = time.time() + 2
 
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
