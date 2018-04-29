@@ -8,6 +8,8 @@ from flask import Flask, request, Response, render_template
 from flask_cors import CORS
 from distancecalculator import distance
 
+from timeout import timeout
+
 app = Flask(__name__)
 CORS(app)
 
