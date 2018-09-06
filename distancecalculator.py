@@ -9,7 +9,7 @@ GPIO_ZERO_TRIGGER = 12
 GPIO_ZERO_ECHO = 18
 
 #GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
