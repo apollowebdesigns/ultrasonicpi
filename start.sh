@@ -1,5 +1,2 @@
-cd ~
-cd Documents
-cd python
-cd ultrasonicpi
+cd /home/pi/Documents/python/ultrasonicpi
 python3 app.py
