@@ -13,7 +13,8 @@ sudo python3 -m pip install psutil
 
 ```python
 psutil
-
+flask
+flask_cors
 sseclient
 
 greenlet
