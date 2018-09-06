@@ -1,0 +1,1 @@
+sudo python3 -m pip install psutil flask flask_cors gevent greenlet
